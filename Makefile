@@ -6,7 +6,7 @@
 #    By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/01 18:17:13 by lfaria-m          #+#    #+#              #
-#    Updated: 2024/11/20 13:57:27 by lfaria-m         ###   ########.fr        #
+#    Updated: 2024/11/22 21:26:42 by lfaria-m         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@
 NAME = push_swap
 
 # Source files
-SRCS = main.c lst.c
+SRCS = main.c lst.c do_ops.c sort_three.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)

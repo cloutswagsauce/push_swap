@@ -6,7 +6,7 @@
 /*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:14:25 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/20 14:09:13 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/23 10:04:47 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,8 +18,7 @@ typedef	struct	s_list
 	int				nbr;
 	int				cost;
 	int				*target;
-	struct s_list	*next;
-	struct s_list	*prev;	
+	struct s_list	*next;	
 	
 }				t_list;
 
@@ -36,6 +35,18 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstnew(int nbr);
+void	pa(t_list **stack_a, t_list **stack_b);
+void	sa(t_list **stack_a);
+void	pb(t_list **stack_a, t_list **stack_b);
+void	sb(t_list **stack_b);
+void	ss(t_list **stack_a, t_list **stack_b);
+void	ra(t_list **stack_a);
+void	rra(t_list **stack_a);
+void	rb(t_list **stack_b);
+void	rrb(t_list **stack_b);
+void	rr(t_list **stack_a, t_list **stack_b);
+void	rrr(t_list **stack_a, t_list **stack_b);
+void	sort_three(t_list **list);
 
 
 

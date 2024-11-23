@@ -6,7 +6,7 @@
 /*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:37:33 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/20 14:17:19 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/23 09:54:15 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,32 +14,25 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	int	i;
-	int	len;
-
 	if (!lst)
 		return (0);
-	i = 0;
-	len = ft_lstsize(lst) - 1;
-	while (i <= len && lst)
-	{
-		i ++;
-		lst = lst -> next;
-	}
+	while (lst->next)
+		lst = lst->next;
 	return (lst);
 }
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last;
 
-	if (!new)
-		return ;
-	last = ft_lstlast(*lst);
-	
-	if (!last)
+	if (!*lst)
+	{
 		*lst = new;
-	else
-		last -> next = new;
+		return ;
+	}
+	last = ft_lstlast(*lst);
+	last->next = new;
+		
+		
 }
 
 /*void	ft_lstclear(t_list **lst, void (*del)(void *))
@@ -76,7 +69,7 @@ t_list	*ft_lstnew(int nbr)
 {
 	t_list	*new_node;
 
-	new_node = (t_list *) malloc(sizeof(t_list));
+	new_node = malloc(sizeof(t_list));
 	if (!new_node)
 		return (0);
 	new_node -> nbr = nbr;
