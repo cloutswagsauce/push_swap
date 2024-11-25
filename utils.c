@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: lfaria-m <lfaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:50:47 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/25 16:09:10 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:49:01 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -33,6 +33,7 @@ void find_cheapest(t_list *stack)
 }
 void cost_check(t_list *stack_a, t_list *stack_b)
 {
+	// ok
 	int len_a;
 	int	len_b;
 
@@ -42,7 +43,7 @@ void cost_check(t_list *stack_a, t_list *stack_b)
 	while (stack_a)
 	{
 		stack_a->cost = stack_a->index;
-		if (!stack_a->above_median)
+		if (!(stack_a->above_median))
 			stack_a->cost = len_a - (stack_a->index);
 		if (stack_a->target->above_median)
 			stack_a->cost += stack_a->target->index;
@@ -55,6 +56,10 @@ t_list *find_max(t_list *stack)
 {
 	t_list	*max_node;
 	long 	max;
+	
+	if (!stack)
+		return (0);
+
 	max = LONG_MIN;
 	while (stack)
 	{
@@ -71,6 +76,7 @@ t_list *find_max(t_list *stack)
 }
 void set_target_a(t_list **stack_a, t_list **stack_b)
 {
+//ok
 	t_list	*target_node;
 	t_list	*current_b;
 	long	best_match;
@@ -90,10 +96,7 @@ void set_target_a(t_list **stack_a, t_list **stack_b)
 			current_b = current_b->next;
 		}
 		if (best_match == LONG_MIN)
-		{
-			target_node = find_max(*stack_b);
-			(*stack_a)->target = target_node;
-		}
+			(*stack_a)->target = find_max(*stack_b);
 		else
 			(*stack_a)->target = target_node;
 		(*stack_a) = (*stack_a)->next;
@@ -102,9 +105,12 @@ void set_target_a(t_list **stack_a, t_list **stack_b)
 
 void set_indexes(t_list *stack)
 {
+	// ok
 	int	i;
 	int median;
 
+	if (!stack)
+		return ;
 	i = 0;
 	median = ft_lstsize(stack) / 2;
 

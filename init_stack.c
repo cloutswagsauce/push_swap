@@ -1,24 +1,23 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: lfaria-m <lfaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:57:47 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/25 16:41:12 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:50:36 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
 void set_cheapest(t_list *stack)
 {
+	// ok
 	long	cheapest_value;
 	t_list	*cheapest_node;
 
-	
-	printf("ccalled chepest");
 	if (!stack)
 		return ;
 	cheapest_value = LONG_MAX;
@@ -42,6 +41,7 @@ void set_cheapest(t_list *stack)
 }
 void init_nodes_b(t_list **stack_a, t_list **stack_b)
 {
+	// ok
 	set_indexes(*stack_a);
 	set_indexes(*stack_b);
 	set_target_b(stack_a, stack_b);
@@ -49,14 +49,13 @@ void init_nodes_b(t_list **stack_a, t_list **stack_b)
 
 void init_nodes_a(t_list **stack_a, t_list **stack_b)
 {
+	//ok
 	printf("init nodes");
 	set_indexes(*stack_a);
 	set_indexes(*stack_b);
 	set_target_a(stack_a, stack_b);
 	cost_check(*stack_a, *stack_b);
 	set_cheapest(*stack_a);
-	
-	
 	
 }
 void add_node(int nbr, t_list **stack_a)

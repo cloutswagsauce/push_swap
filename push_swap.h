@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: lfaria-m <lfaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:14:25 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/25 13:53:07 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:55:58 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -60,9 +60,7 @@ void	sort_stack(t_list **stack_a, t_list **stack_b);
 void	set_indexes(t_list *stack);
 void	set_target_a(t_list **stack_a, t_list **stack_b);
 void	set_target_b(t_list **stack_a, t_list **stack_b);
-void	rotate_both(t_list **stack_a, t_list **stack_b, t_list *cheapest_node);
 void	push_prep(t_list **stack, t_list *top_node, char stack_name);
-void 	reverse_rotate_both(t_list **stack_a, t_list **stack_b, t_list *cheapest_node);
 void	init_nodes_a(t_list **stack_a, t_list **stack_b);
 void	init_nodes_b(t_list **stack_a, t_list **stack_b);
 t_list 	*find_min(t_list *stack);

@@ -1,16 +1,32 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sort_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: lfaria-m <lfaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 15:18:23 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/25 16:24:35 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:35:19 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void rotate_both(t_list **stack_a, t_list **stack_b, t_list *cheapest_node)
+{
+	while (*stack_a != cheapest_node && *stack_b != cheapest_node->target)
+		rr(stack_a, stack_b);
+	set_indexes(*stack_a);
+	set_indexes(*stack_b);
+}
+
+static void reverse_rotate_both(t_list **stack_a, t_list **stack_b, t_list *cheapest_node)
+{
+	while (*stack_a != cheapest_node && *stack_b != cheapest_node->target)
+		rrr(stack_a, stack_b);
+	set_indexes(*stack_a);
+	set_indexes(*stack_b);
+}
 
 static void min_on_top(t_list **stack_a)
 {
@@ -25,6 +41,7 @@ static void min_on_top(t_list **stack_a)
 
 void set_target_b(t_list **stack_a, t_list **stack_b)
 {
+	// ok
 	t_list *current_a;
 	t_list *target_node;
 	long best_match;
@@ -35,7 +52,7 @@ void set_target_b(t_list **stack_a, t_list **stack_b)
 		current_a = *stack_a;
 		while (current_a)
 		{
-			if (current_a->nbr > (*stack_a)->nbr && current_a->nbr < best_match)
+			if (current_a->nbr > (*stack_b)->nbr && current_a->nbr < best_match)
 			{
 				best_match = current_a->nbr;
 				target_node = current_a;
@@ -71,8 +88,8 @@ static void move_a_to_b(t_list **stack_a, t_list **stack_b)
 		printf("failed to find cheapest");
 	if (cheapest_node->above_median && cheapest_node->target->above_median)
 		rotate_both(stack_a, stack_b, cheapest_node);
-	else if (!cheapest_node->above_median && !(cheapest_node->target->above_median))
-		rrr(stack_a, stack_b);
+	else if (!(cheapest_node->above_median) && !(cheapest_node->target->above_median))
+		reverse_rotate_both(stack_a, stack_b, cheapest_node);
 	push_prep(stack_a, cheapest_node, 'a');
 	push_prep(stack_a, cheapest_node->target, 'b');
 	pb(stack_a, stack_b);

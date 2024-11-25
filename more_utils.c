@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   more_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: lfaria-m <lfaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 10:40:18 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/25 13:56:52 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:53:51 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -31,21 +31,7 @@ t_list *find_min(t_list *stack)
 	return (min_node);
 }
 
-void rotate_both(t_list **stack_a, t_list **stack_b, t_list *cheapest_node)
-{
-	while (*stack_a != cheapest_node && *stack_b != cheapest_node->target)
-		rr(stack_a, stack_b);
-	set_indexes(*stack_a);
-	set_indexes(*stack_b);
-}
 
-void reverse_rotate_both(t_list **stack_a, t_list **stack_b, t_list *cheapest_node)
-{
-	while (*stack_a != cheapest_node && *stack_b != cheapest_node->target)
-		rrr(stack_a, stack_b);
-	set_indexes(*stack_a);
-	set_indexes(*stack_b);
-}
 
 void push_prep(t_list **stack, t_list *top_node, char stack_name)
 {
