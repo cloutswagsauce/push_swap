@@ -6,7 +6,7 @@
 /*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:37:33 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/23 09:54:15 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:09:01 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,10 +27,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (!*lst)
 	{
 		*lst = new;
+		new->prev = 0;
+		
 		return ;
 	}
 	last = ft_lstlast(*lst);
 	last->next = new;
+	new->prev = last;
 		
 		
 }

@@ -6,7 +6,7 @@
 /*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:36:07 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/23 10:38:11 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:57:23 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -59,7 +59,7 @@ void pb(t_list **stack_a, t_list **stack_b)
 		temp->next = *stack_b;
 		*stack_a = temp;
 	}
-	write(1, "pb\n", 2);
+	write(1, "pb\n", 3);
 	
 }
 

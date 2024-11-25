@@ -6,48 +6,38 @@
 /*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:20:52 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/23 10:11:43 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:49:46 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-# include "push_swap.h"
-# include <stdio.h>
-
-void add_node(int nbr, t_list **stack_a)
-{
-	t_list *new_node;
-	
-	new_node = ft_lstnew(nbr);
-	if (!new_node)
-		return ;
-	ft_lstadd_back(stack_a, new_node);
-
-	
-}
+#include "push_swap.h"
+#include <stdio.h>
 
 int main(int argc, char **argv)
 {
-	int i;
 	t_list *stack_a;
+	t_list *stack_b;
 	t_list *curr;
-	
-	stack_a = 0;
 
-	i = 1;
-	while (i < argc)
+	stack_a = 0;
+	stack_b = 0;
+	(void)argc;
+	init_stack(&stack_a, ++argv);
+	if (!is_sorted(stack_a))
 	{
-		add_node(ft_atoi(argv[i]), &stack_a);
-		i ++;
+		if (ft_lstsize(stack_a) == 2)
+			sa(&stack_a);
+		else if (ft_lstsize(stack_a) == 3)
+			sort_three(&stack_a);
+		else
+			sort_stack(&stack_a, &stack_b);
 	}
-	sort_three(&stack_a);
-	
+
 	curr = stack_a;
-	while(curr)
+	while (curr)
 	{
-		printf("%d", curr->nbr);
+		printf("%d ", curr->nbr);
 		curr = curr->next;
 	}
 	printf("stack size: %d", ft_lstsize(stack_a));
-	
-	
 }
