@@ -6,7 +6,7 @@
 /*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 13:57:47 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/26 13:24:46 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/26 22:39:12 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -63,10 +63,18 @@ void add_node(int nbr, t_list **stack_a)
 
 int init_stack(t_list **stack_a, char **argv)
 {
-	int		i;
+    int i = 0;
 
-	i = 0;
-	while (argv[i])
-		add_node(ft_atoi(argv[i++]), stack_a);
-	return (0);
+    while (argv[i])
+    {
+        if (!validate_input(argv[i], *stack_a))
+        {
+			write(2, "Error\n", 6);
+            return (0);
+        }
+        add_node(ft_atoi(argv[i]), stack_a);
+        i++;
+    }
+    return (1); // Successfully initialized stack
 }
+
