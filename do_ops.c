@@ -6,7 +6,7 @@
 /*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:36:07 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/25 13:57:23 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:19:53 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -52,12 +52,12 @@ void pb(t_list **stack_a, t_list **stack_b)
 {
 	t_list *temp;
 	
-	if (*stack_a && *stack_b)
+	if (*stack_a)
 	{
 		temp = *stack_a;
 		*stack_a = (*stack_a)->next;
 		temp->next = *stack_b;
-		*stack_a = temp;
+		*stack_b = temp;
 	}
 	write(1, "pb\n", 3);
 	
@@ -91,36 +91,26 @@ void ss(t_list **stack_a, t_list **stack_b)
 	{
 		// set temp to the second
 		temp = (*stack_a)->next;
-
 		// set first's next pointer to the third node
 		(*stack_a)->next = temp->next;
-
 		// set temp's next to be the first
 		temp->next = *stack_a;
-
 		// set first node to the second 
 		*stack_a = temp;
 	}
-	
 	
 	if (*stack_b && (*stack_b)->next)
 	{
 		// set temp to the second
 		temp = (*stack_b)->next;
-
 		// set first's next pointer to the third node
 		(*stack_b)->next = temp->next;
-
 		// set temp's next to be the first
 		temp->next = *stack_b;
-
 		// set first node to the second 
 		*stack_b = temp;
-		
 	}
-	write(1, "sssa\n", 4);
-	
-	
+	write(1, "ss\n", 3);
 }
 
 void ra(t_list **stack_a)
