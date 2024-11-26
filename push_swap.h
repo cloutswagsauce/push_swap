@@ -6,7 +6,7 @@
 /*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:14:25 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/26 10:04:40 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/26 20:32:51 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -64,7 +64,8 @@ t_list 	*find_min(t_list *stack);
 void	find_cheapest(t_list *stack);
 void	cost_check(t_list *stack_a, t_list *stack_b);
 void	set_target_a(t_list **stack_a, t_list **stack_b);
-
+int		validate_input(char *str, t_list *stack_a);
+void	free_stack(t_list **stack);
 
 
 

@@ -1,23 +1,22 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   validate_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfaria-m <lfaria-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 10:00:38 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/26 18:42:18 by lfaria-m         ###   ########.fr       */
+/*   Updated: 2024/11/26 22:57:40 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "push_swap.h"
-
 #include <limits.h>
 
-int	ft_atoi_safe(const char *str, int *error)
+int ft_atoi_safe(const char *str, int *error)
 {
-	int			sign;
-	long long	result;
+	int sign;
+	long long result;
 
 	sign = 1;
 	result = 0;
@@ -40,7 +39,7 @@ int	ft_atoi_safe(const char *str, int *error)
 	while (*str >= '0' && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
-		if (sign * result > 2147483647 || sign * result < -2147483648)
+		if (sign * result > INT_MAX || sign * result < INT_MIN)
 		{
 			*error = 1; // Set error flag for out-of-bounds values
 			return (0);
@@ -58,25 +57,33 @@ int	ft_atoi_safe(const char *str, int *error)
 	return ((int)(sign * result));
 }
 
-
 int is_int(char *str)
 {
 	int error;
-	
+
 	error = 0;
 	if (ft_atoi_safe(str, &error) == 0 && error)
 		return (0);
 	return (1);
 }
+
 int no_duplicates(char *str, t_list *stack_a)
 {
+	int error;
+	int value;
+
+	error = 0;
+	value = ft_atoi_safe(str, &error);
+	if (error)
+		return (0); // If invalid input, treat as duplicate for safety
+
 	while (stack_a)
 	{
-		if (stack_a->nbr == ft_atoi(str))
-			return (0);
+		if (stack_a->nbr == value)
+			return (0); // Duplicate found
 		stack_a = stack_a->next;
 	}
-	return (1);
+	return (1); // No duplicates
 }
 
 int all_digits(char *str)
@@ -84,28 +91,32 @@ int all_digits(char *str)
 	int i;
 
 	i = 0;
-	while (str[i])
+	if (str[i] == '-' || str[i] == '+') // Allow leading sign
+		i++;
+	if (str[i])
 	{
-		if (ft_isdigit(str[i]))
+		while (str[i])
+		{
+			if (!ft_isdigit(str[i]))
+				return (0); // Non-digit character found
 			i++;
-		else
-			return (0);
+		}
+		return (1); // All characters are digits
 	}
-	return (1);
+	else
+		return (0);
+
+	
 }
+
 int validate_input(char *str, t_list *stack_a)
 {
-
 	if (str)
 	{
-		if (all_digits(str) && no_duplicates(str, stack_a) && is_int(str))
-			return (1);
+		if (all_digits(str) && is_int(str) && no_duplicates(str, stack_a))
+			return (1); // Input is valid
 		else
-		{
-			free_stack_error(stack_a);
-			write(2, "Error\n", 5);
 			return (0);
-		}
 	}
-	return (0);
+	return (0); // Null input is invalid
 }
