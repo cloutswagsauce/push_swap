@@ -1,42 +1,47 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   do_ops.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfaria-m <lfaria-m@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 15:23:54 by lfaria-m          #+#    #+#             */
-/*   Updated: 2024/11/27 12:05:29 by lfaria-m         ###   ########.fr       */
+/*   Created: 2024/11/20 11:36:07 by lfaria-m          #+#    #+#             */
+/*   Updated: 2024/11/27 11:03:49 by lfaria-m         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "push_swap.h"
 
-void	sort_three(t_list **list)
+void	pa(t_list **stack_a, t_list **stack_b)
 {
-	int	a;
-	int	b;
-	int	c;
+	t_list	*temp;
 
-	a = (*list)->nbr;
-	b = (*list)->next->nbr;
-	c = (*list)->next->next->nbr;
-	if (a < b && b < c)
-		return ;
-	else if (a < c && c < b)
+	if (*stack_a && *stack_b)
 	{
-		sa(list);
-		ra(list);
+		temp = *stack_b;
+		*stack_b = (*stack_b)->next;
+		temp->next = *stack_a;
+		*stack_a = temp;
 	}
-	else if (b < a && a < c)
-		sa(list);
-	else if (b < c && c < a)
-		ra(list);
-	else if (c < a && a < b)
-		rra(list);
-	else if (c < b && b < a)
-	{
-		sa(list);
-		rra(list);
-	}
+	write(1, "pa\n", 3);
 }
+
+
+
+void	pb(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*temp;
+
+	if (*stack_a)
+	{
+		temp = *stack_a;
+		*stack_a = (*stack_a)->next;
+		temp->next = *stack_b;
+		*stack_b = temp;
+	}
+	write(1, "pb\n", 3);
+}
+
+
+
+
